@@ -1,4 +1,5 @@
 import functools
+import random
 from typing import List
 
 from test_framework import generic_test
@@ -9,8 +10,11 @@ from test_framework.test_utils import enable_executor_hook
 
 
 def random_subset(n: int, k: int) -> List[int]:
-    # TODO - you fill in here.
-    return []
+    result = []
+    for i in range(n):
+        if random.randrange(n - i) < k - len(result):
+            result.append(i)
+    return result
 
 
 @enable_executor_hook

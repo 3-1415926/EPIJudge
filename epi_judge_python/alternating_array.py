@@ -7,8 +7,9 @@ from test_framework.test_utils import enable_executor_hook
 
 
 def rearrange(A: List[int]) -> None:
-    # TODO - you fill in here.
-    return
+    for i in range(1, len(A)):
+        A[i - 1], A[i] = ((min if i % 2 != 0 else max)(A[i - 1], A[i]),
+                          (min if i % 2 == 0 else max)(A[i - 1], A[i]))
 
 
 @enable_executor_hook

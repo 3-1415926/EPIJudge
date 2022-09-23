@@ -12,8 +12,16 @@ def zero_one_random():
 
 
 def uniform_random(lower_bound: int, upper_bound: int) -> int:
-    # TODO - you fill in here.
-    return 0
+    range_ = upper_bound - lower_bound + 1
+    while True:
+        result = 0
+        max_value = 1
+        while range_ >= max_value:
+            result = (result << 1) | zero_one_random()
+            max_value <<= 1
+        if result < range_:
+            break
+    return result + lower_bound
 
 
 @enable_executor_hook

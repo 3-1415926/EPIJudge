@@ -2,8 +2,13 @@ from test_framework import generic_test
 
 
 def count_bits(x: int) -> int:
-    # TODO - you fill in here.
-    return 0
+    if x < 0: raise ValueError('Only non-negative')
+    cnt = 0
+    while x > 0:
+        x &= x - 1
+        cnt += 1
+    return cnt
+
 
 
 if __name__ == '__main__':

@@ -5,10 +5,22 @@ from test_framework.test_failure import PropertyName
 
 Rect = collections.namedtuple('Rect', ('x', 'y', 'width', 'height'))
 
+Interval = collections.namedtuple('Interval', ('start', 'length'))
+
+def intersect_interval(i1: Interval, i2: Interval) -> Interval:
+    if i1.start + i1.length < i2.start or i2.start + i2.length < i1.start:
+        return None
+    start = max(i1.start, i2.start)
+    end = min(i1.start + i1.length, i2.start + i2.length)
+    return Interval(start, end - start)
+
 
 def intersect_rectangle(r1: Rect, r2: Rect) -> Rect:
-    # TODO - you fill in here.
-    return Rect(0, 0, 0, 0)
+    if (x_interval := intersect_interval(Interval(r1.x, r1.width), Interval(r2.x, r2.width))) is None:
+        return Rect(0, 0, -1, -1)
+    if (y_interval := intersect_interval(Interval(r1.y, r1.height), Interval(r2.y, r2.height))) is None:
+        return Rect(0, 0, -1, -1)
+    return Rect(x_interval.start, y_interval.start, x_interval.length, y_interval.length)
 
 
 def intersect_rectangle_wrapper(r1, r2):
