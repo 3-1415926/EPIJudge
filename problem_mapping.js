@@ -432,7 +432,7 @@ problem_mapping = {
                 "total": 51
             },
             "Python: spiral_ordering.py": {
-                "passed": 0,
+                "passed": 51,
                 "total": 51
             }
         },
@@ -446,7 +446,7 @@ problem_mapping = {
                 "total": 51
             },
             "Python: matrix_rotation.py": {
-                "passed": 0,
+                "passed": 51,
                 "total": 51
             }
         },
@@ -460,7 +460,7 @@ problem_mapping = {
                 "total": 35
             },
             "Python: pascal_triangle.py": {
-                "passed": 0,
+                "passed": 35,
                 "total": 35
             }
         }
@@ -476,7 +476,7 @@ problem_mapping = {
                 "total": 10000
             },
             "Python: is_string_palindromic.py": {
-                "passed": 0,
+                "passed": 10000,
                 "total": 10000
             }
         },
@@ -490,7 +490,7 @@ problem_mapping = {
                 "total": 15002
             },
             "Python: string_integer_interconversion.py": {
-                "passed": 0,
+                "passed": 15002,
                 "total": 15002
             }
         },
@@ -504,7 +504,7 @@ problem_mapping = {
                 "total": 20001
             },
             "Python: convert_base.py": {
-                "passed": 0,
+                "passed": 20001,
                 "total": 20001
             }
         },
