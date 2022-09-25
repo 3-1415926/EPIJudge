@@ -1,4 +1,5 @@
 import functools
+from re import L
 from typing import Optional
 
 from list_node import ListNode
@@ -8,8 +9,22 @@ from test_framework.test_utils import enable_executor_hook
 
 
 def list_pivoting(l: ListNode, x: int) -> Optional[ListNode]:
-    # TODO - you fill in here.
-    return None
+    lt_head = lt_tail = ListNode()
+    eq_head = eq_tail = ListNode()
+    gt_head = gt_tail = ListNode()
+    while l is not None:
+        if l.data < x:
+            lt_tail.next = lt_tail = l
+        elif l.data > x:
+            gt_tail.next = gt_tail = l
+        else:
+            eq_tail.next = eq_tail = l
+        l = l.next
+    gt_tail.next = None
+    eq_tail.next = gt_head.next
+    lt_tail.next = eq_head.next
+    return lt_head.next
+
 
 
 def linked_to_list(l):
