@@ -3,12 +3,27 @@ import functools
 from test_framework import generic_test
 from test_framework.test_utils import enable_executor_hook
 
+def reverse(items, start=0, end=None):
+    if end is None: end = len(items)
+    for i in range((end - start) // 2):
+        items[start + i], items[end - i - 1] = items[end - i - 1], items[start + i]
+
 
 # Assume s is a list of strings, each of which is of length 1, e.g.,
 # ['r', 'a', 'm', ' ', 'i', 's', ' ', 'c', 'o', 's', 't', 'l', 'y'].
 def reverse_words(s):
-    # TODO - you fill in here.
-    return
+    start = None
+    for i in range(len(s)):
+        if s[i] != ' ':
+            if start is None: start = i
+        else:
+            if start is not None:
+                reverse(s, start, i)
+                start = None
+    if start is not None:
+        reverse(s, start, len(s))
+        start = None
+    reverse(s)
 
 
 @enable_executor_hook
