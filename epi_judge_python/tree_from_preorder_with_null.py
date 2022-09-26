@@ -1,14 +1,25 @@
 import functools
-from typing import List
+from typing import List, Tuple
 
 from binary_tree_node import BinaryTreeNode
 from test_framework import generic_test
 from test_framework.test_utils import enable_executor_hook
 
 
+def reconstruct_recursive(preorder: List[int], index: int) -> Tuple[BinaryTreeNode, int]:
+    if preorder[index] is None: return None, index + 1
+    root = BinaryTreeNode(data=preorder[index])
+    index += 1
+    root.left, index = reconstruct_recursive(preorder, index)
+    root.right, index = reconstruct_recursive(preorder, index)
+    return root, index
+
+
+
 def reconstruct_preorder(preorder: List[int]) -> BinaryTreeNode:
-    # TODO - you fill in here.
-    return BinaryTreeNode()
+    root, index = reconstruct_recursive(preorder, 0)
+    assert index == len(preorder)
+    return root
 
 
 @enable_executor_hook
