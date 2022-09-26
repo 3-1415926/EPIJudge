@@ -3,21 +3,39 @@ from test_framework.test_failure import TestFailure
 
 
 class Queue:
-    def __init__(self, capacity: int) -> None:
-        # TODO - you fill in here.
+    def __init__(self, capacity: int = 1) -> None:
+        self._data = [None] * min(capacity, 1)
+        self._left = 0
+        self._right = 0
+        self._count = 0
         return
+
+    def _resize(self, target_size):
+        target_size = max(target_size, 1)
+        new_data = [None] * target_size
+        for i in range(self._count):
+            new_data[i] = self._data[(self._left + i) % len(self._data)]
+        self._data = new_data
+        self._left = 0
+        self._right = self._count % len(self._data)
 
     def enqueue(self, x: int) -> None:
-        # TODO - you fill in here.
-        return
+        if self._count == len(self._data): self._resize(self._count * 2)
+        self._data[self._right] = x
+        self._right = (self._right + 1) % len(self._data)
+        self._count += 1
 
     def dequeue(self) -> int:
-        # TODO - you fill in here.
-        return 0
+        if self._count == 0: raise ValueError('Dequeue from empty')
+        result = self._data[self._left]
+        self._data[self._left] = None
+        self._left = (self._left + 1) % len(self._data)
+        self._count -= 1
+        if self._count <= len(self._data) // 4: self._resize(self._count)
+        return result
 
     def size(self) -> int:
-        # TODO - you fill in here.
-        return 0
+        return self._count
 
 
 def queue_tester(ops):

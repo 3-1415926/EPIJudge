@@ -2,9 +2,18 @@ from binary_tree_node import BinaryTreeNode
 from test_framework import generic_test
 
 
+def check_symmetric(a: BinaryTreeNode, b: BinaryTreeNode) -> bool:
+    if a is None:
+        if b is None: return True
+        else: return False
+    else:
+        if b is None: return False
+        else: return a.data == b.data and check_symmetric(a.left, b.right) and check_symmetric(a.right, b.left)
+
+
 def is_symmetric(tree: BinaryTreeNode) -> bool:
-    # TODO - you fill in here.
-    return True
+    if tree is None: return True
+    return check_symmetric(tree.left, tree.right)
 
 
 if __name__ == '__main__':

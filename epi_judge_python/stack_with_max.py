@@ -1,23 +1,33 @@
+from collections import namedtuple
 from test_framework import generic_test
 from test_framework.test_failure import TestFailure
 
 
+LenMax = namedtuple('LenMax', 'len, max')
+
+
 class Stack:
+    _data = []
+    _max = []
+
     def empty(self) -> bool:
-        # TODO - you fill in here.
-        return True
+        return len(self._data) == 0
 
     def max(self) -> int:
-        # TODO - you fill in here.
-        return 0
+        if self.empty(): raise ValueError()
+        return self._max[-1].max
 
     def pop(self) -> int:
-        # TODO - you fill in here.
-        return 0
+        if self.empty(): raise ValueError()
+        result = self._data.pop()
+        if self._max[-1].len > len(self._data):
+            self._max.pop()
+        return result
 
     def push(self, x: int) -> None:
-        # TODO - you fill in here.
-        return
+        self._data.append(x)
+        if len(self._max) == 0 or x > self._max[-1].max:
+            self._max.append(LenMax(len(self._data), x))
 
 
 def stack_tester(ops):
