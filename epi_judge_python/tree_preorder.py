@@ -5,8 +5,14 @@ from test_framework import generic_test
 
 
 def preorder_traversal(tree: BinaryTreeNode) -> List[int]:
-    # TODO - you fill in here.
-    return []
+    if tree is None: return []
+    result, stack = [], [tree]
+    while stack:
+        tree = stack.pop()
+        result.append(tree.data)
+        if tree.right: stack.append(tree.right)
+        if tree.left: stack.append(tree.left)
+    return result
 
 
 if __name__ == '__main__':
