@@ -1,4 +1,6 @@
 import collections
+from functools import reduce
+from operator import xor
 from typing import List
 
 from test_framework import generic_test
@@ -8,9 +10,23 @@ DuplicateAndMissing = collections.namedtuple('DuplicateAndMissing',
                                              ('duplicate', 'missing'))
 
 
+def last_set_bit(x):
+    return x ^ (x & (x - 1))
+
+def calculate_xor_diff(items, predicate=lambda _: True):
+    expected = filter(predicate, range(len(items)))
+    actual = filter(predicate, items)
+    return reduce(xor, expected, 0) ^ reduce(xor, actual, 0)
+
 def find_duplicate_missing(A: List[int]) -> DuplicateAndMissing:
-    # TODO - you fill in here.
-    return DuplicateAndMissing(0, 0)
+    xor_diff = calculate_xor_diff(A)
+    diff_bit = last_set_bit(xor_diff)
+    missing = calculate_xor_diff(A, lambda x: x & diff_bit)
+    duplicate = calculate_xor_diff(A, lambda x: ~(x | ~diff_bit))
+    if missing in A: missing, duplicate = duplicate, missing
+    assert missing not in A, f'Missing {missing} is actually present'
+    assert sum(x == duplicate for x in A) == 2, f'Duplicate {duplicate} is actually not duplicate'
+    return DuplicateAndMissing(duplicate, missing)
 
 
 def res_printer(prop, value):

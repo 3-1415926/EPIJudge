@@ -4,7 +4,16 @@ from test_framework import generic_test
 
 
 def matrix_search(A: List[List[int]], x: int) -> bool:
-    # TODO - you fill in here.
+    if len(A) == 0 or len(A[0]) == 0: return False
+    i = 0
+    j = len(A[0]) - 1
+    while A[i][j] != x:
+        if A[i][j] > x:
+            j -= 1
+            if j < 0: return False
+        else:
+            i += 1
+            if i >= len(A): return False
     return True
 
 
