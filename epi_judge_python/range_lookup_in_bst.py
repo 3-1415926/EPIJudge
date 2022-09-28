@@ -7,9 +7,14 @@ from test_framework import generic_test
 Interval = collections.namedtuple('Interval', ('left', 'right'))
 
 
-def range_lookup_in_bst(tree: BstNode, interval: Interval) -> List[int]:
-    # TODO - you fill in here.
-    return []
+def range_lookup_in_bst(tree: BstNode, interval: Interval, result: List[int] = None) -> List[int]:
+    if result is None: result = []
+    if tree is not None and interval.left <= interval.right:
+        range_lookup_in_bst(tree.left, Interval(interval.left, min(tree.data - 1, interval.right)), result)
+        if interval.left <= tree.data <= interval.right:
+            result.append(tree.data)
+        range_lookup_in_bst(tree.right, Interval(max(tree.data + 1, interval.left), interval.right), result)
+    return result
 
 
 def range_lookup_in_bst_wrapper(tree, i):

@@ -5,8 +5,9 @@ from test_framework import generic_test
 
 
 def find_first_greater_than_k(tree: BstNode, k: int) -> Optional[BstNode]:
-    # TODO - you fill in here.
-    return None
+    if tree is None: return None
+    if k >= tree.data: return find_first_greater_than_k(tree.right, k)
+    return find_first_greater_than_k(tree.left, k) or tree
 
 
 def find_first_greater_than_k_wrapper(tree, k):
