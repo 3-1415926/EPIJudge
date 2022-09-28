@@ -4,8 +4,17 @@ from test_framework import generic_test
 
 
 def longest_subarray_with_distinct_entries(A: List[int]) -> int:
-    # TODO - you fill in here.
-    return 0
+    max_distinct = 0
+    cur_distinct = set()
+    i = 0
+    for j in range(len(A)):
+        while A[j] in cur_distinct:
+            cur_distinct.discard(A[i])
+            i += 1
+        assert i <= j
+        cur_distinct.add(A[j])
+        max_distinct = max(max_distinct, len(cur_distinct))
+    return max_distinct
 
 
 if __name__ == '__main__':

@@ -10,8 +10,23 @@ Person = collections.namedtuple('Person', ('age', 'name'))
 
 
 def group_by_age(people: List[Person]) -> None:
-    # TODO - you fill in here.
-    return
+    rights = collections.Counter()
+    for p in people:
+        rights[p.age] += 1
+    accum = 0
+    for age in rights.keys():
+        accum += rights[age]
+        rights[age] = accum
+    assert accum == len(people)
+    lefts = rights.copy()
+    i = 0
+    while i < len(people):
+        if lefts[people[i].age] <= i < rights[people[i].age]:
+            i += 1
+        else:
+            lefts[people[i].age] -= 1
+            people[lefts[people[i].age]], people[i] = people[i], people[lefts[people[i].age]]
+    
 
 
 @enable_executor_hook

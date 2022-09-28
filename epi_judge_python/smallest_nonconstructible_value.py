@@ -4,8 +4,12 @@ from test_framework import generic_test
 
 
 def smallest_nonconstructible_value(A: List[int]) -> int:
-    # TODO - you fill in here.
-    return 0
+    A.sort()
+    sum = 0
+    for value in A:
+        if value > sum + 1: break
+        sum += value
+    return sum + 1
 
 
 if __name__ == '__main__':

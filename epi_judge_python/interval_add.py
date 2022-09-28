@@ -1,6 +1,6 @@
 import collections
 import functools
-from typing import List
+from typing import List, Optional
 
 from test_framework import generic_test
 from test_framework.test_failure import PropertyName
@@ -11,8 +11,21 @@ Interval = collections.namedtuple('Interval', ('left', 'right'))
 
 def add_interval(disjoint_intervals: List[Interval],
                  new_interval: Interval) -> List[Interval]:
-    # TODO - you fill in here.
-    return []
+    result = []
+    disjoint_intervals.sort(key=lambda x: x.left)
+    i = 0
+    while i < len(disjoint_intervals) and disjoint_intervals[i].right < new_interval.left:
+        result.append(disjoint_intervals[i])
+        i += 1
+    while i < len(disjoint_intervals) and disjoint_intervals[i].left <= new_interval.right:
+        new_interval = Interval(min(new_interval.left, disjoint_intervals[i].left),
+                                max(new_interval.right, disjoint_intervals[i].right))
+        i += 1    
+    result.append(new_interval)
+    while i < len(disjoint_intervals):
+        result.append(disjoint_intervals[i])
+        i += 1
+    return result
 
 
 @enable_executor_hook
