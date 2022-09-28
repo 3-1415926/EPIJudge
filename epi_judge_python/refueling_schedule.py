@@ -11,8 +11,15 @@ MPG = 20
 # gallons[i] is the amount of gas in city i, and distances[i] is the
 # distance city i to the next city.
 def find_ample_city(gallons: List[int], distances: List[int]) -> int:
-    # TODO - you fill in here.
-    return 0
+    if len(gallons) != len(distances): raise ValueError()
+    prev_tank, prev_distance = 0, 0
+    tank = [None] * len(gallons)
+    for i in range(len(gallons)):
+        tank[i] = prev_tank - prev_distance / MPG
+        prev_tank = tank[i] + gallons[i]
+        prev_distance = distances[i]
+    assert prev_tank - prev_distance / MPG == 0
+    return min(range(len(gallons)), key=lambda i: tank[i])
 
 
 @enable_executor_hook
