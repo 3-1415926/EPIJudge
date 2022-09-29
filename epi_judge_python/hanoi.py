@@ -8,9 +8,14 @@ from test_framework.test_utils import enable_executor_hook
 NUM_PEGS = 3
 
 
-def compute_tower_hanoi(num_rings: int) -> List[List[int]]:
-    # TODO - you fill in here.
-    return []
+def compute_tower_hanoi(num_rings: int, result = None, from_peg: int = 0, to_peg: int = 1) -> List[List[int]]:
+    if result is None: result = []
+    if num_rings == 0: return result
+    temp_peg = sum(range(NUM_PEGS)) - from_peg - to_peg
+    compute_tower_hanoi(num_rings - 1, result, from_peg, temp_peg)
+    result.append([from_peg, to_peg])
+    compute_tower_hanoi(num_rings - 1, result, temp_peg, to_peg)
+    return result
 
 
 @enable_executor_hook
