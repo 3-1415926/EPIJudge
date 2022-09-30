@@ -1,9 +1,12 @@
+import collections
 from test_framework import generic_test
 
 
 def number_of_ways_to_top(top: int, maximum_step: int) -> int:
-    # TODO - you fill in here.
-    return 0
+    deque = collections.deque([0] * (maximum_step - 1) + [1], maxlen=maximum_step)
+    for _ in range(top):
+        deque.append(sum(deque))
+    return deque[-1]
 
 
 if __name__ == '__main__':

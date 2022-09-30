@@ -2,8 +2,11 @@ from test_framework import generic_test
 
 
 def fibonacci(n: int) -> int:
-    # TODO - you fill in here.
-    return -1
+    if n < 0: raise ValueError()
+    prev, cur = 1, 0
+    for _ in range(n):
+        prev, cur = cur, prev + cur
+    return cur
 
 
 if __name__ == '__main__':
