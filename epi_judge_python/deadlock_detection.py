@@ -1,18 +1,29 @@
+import enum
 import functools
 from typing import List
 
 from test_framework import generic_test
 from test_framework.test_utils import enable_executor_hook
 
+Color = enum.Enum('Color', 'WHITE GRAY BLACK')
 
 class GraphVertex:
     def __init__(self) -> None:
-        self.edges: List['GraphVertex'] = []
+        self.color: Color = None
+        self.edges: List[GraphVertex] = []
 
 
 def is_deadlocked(graph: List[GraphVertex]) -> bool:
-    # TODO - you fill in here.
-    return True
+    def dfs(vertex: GraphVertex) -> bool:
+        if vertex.color == Color.BLACK: return False
+        if vertex.color == Color.GRAY: return True
+        vertex.color = Color.GRAY
+        for adjacent in vertex.edges:
+            if dfs(adjacent): return True
+        vertex.color = Color.BLACK
+        return False
+    if len(graph) <= 0: return False
+    return dfs(graph[0])
 
 
 @enable_executor_hook

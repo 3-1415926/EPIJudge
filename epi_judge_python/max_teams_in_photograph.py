@@ -1,4 +1,6 @@
+import collections
 import functools
+import traceback
 from typing import List
 
 from test_framework import generic_test
@@ -8,13 +10,27 @@ from test_framework.test_utils import enable_executor_hook
 class GraphVertex:
     def __init__(self) -> None:
         self.edges: List[GraphVertex] = []
-        # Set max_distance = 0 to indicate unvisitied vertex.
-        self.max_distance = 0
+        self.visited = False
 
 
 def find_largest_number_teams(graph: List[GraphVertex]) -> int:
-    # TODO - you fill in here.
-    return 0
+    def dfs(vertex: GraphVertex):
+        vertex.visited = True
+        for edge in vertex.edges:
+            if not edge.visited:
+                dfs(edge)
+        top_sorted.append(vertex)
+    top_sorted = []
+    for vertex in graph:
+        if not vertex.visited:
+            dfs(vertex)
+    top_sorted.reverse()
+    assert len(top_sorted) == len(graph)
+    max_teams = collections.defaultdict(int)
+    for vertex in top_sorted:
+        for edge in vertex.edges:
+            max_teams[edge] = max(max_teams[edge], max_teams[vertex] + 1)
+    return max(max_teams.values()) + 1
 
 
 @enable_executor_hook

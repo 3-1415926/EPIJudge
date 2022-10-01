@@ -1,3 +1,4 @@
+import collections
 import functools
 from typing import List
 
@@ -6,14 +7,41 @@ from test_framework.test_utils import enable_executor_hook
 
 
 class GraphVertex:
+    _counter = 0
     def __init__(self) -> None:
-        self.d = -1
+        self.id = GraphVertex._counter = GraphVertex._counter + 1
+        self.d = None
         self.edges: List[GraphVertex] = []
+    def __repr__(self):
+        edges_str = ', '.join(str(e.id) for e in self.edges)
+        return f'{self.id} ({self.d}) -> [{edges_str}]'
 
 
 def is_any_placement_feasible(graph: List[GraphVertex]) -> bool:
-    # TODO - you fill in here.
-    return True
+    def dfs(vertex: GraphVertex, is_left: bool):
+        vertex.d = is_left
+        for edge in vertex.edges:
+            if edge.d is None:
+                if not dfs(edge, not is_left): return False
+            else:
+                if edge.d == is_left: return False
+        return True
+    return all(dfs(v, True) for v in graph if v.d is None)
+
+def is_any_placement_feasible_via_bfs(graph: List[GraphVertex]) -> bool:
+    def bfs(vertex: GraphVertex):
+        queue = collections.deque([vertex])
+        vertex.d = 0
+        while queue:
+            vertex = queue.popleft()
+            for edge in vertex.edges:
+                if edge.d is None:
+                    edge.d = vertex.d + 1
+                    queue.append(edge)
+                elif edge.d % 2 == vertex.d % 2:
+                    return False
+        return True
+    return all(bfs(v) for v in graph if v.d is None)
 
 
 @enable_executor_hook

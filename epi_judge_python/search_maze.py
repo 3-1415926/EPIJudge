@@ -11,11 +11,26 @@ WHITE, BLACK = range(2)
 
 Coordinate = collections.namedtuple('Coordinate', ('x', 'y'))
 
+DELTA = [Coordinate(-1, 0), Coordinate(0, -1), Coordinate(1, 0), Coordinate(0, 1)]
 
 def search_maze(maze: List[List[int]], s: Coordinate,
                 e: Coordinate) -> List[Coordinate]:
-    # TODO - you fill in here.
-    return []
+    def dfs_maze(c: Coordinate) -> bool:
+        assert maze[c.x][c.y] == WHITE
+        maze[c.x][c.y] = BLACK
+        path.append(c)
+        if c == e: return True
+        for dc in DELTA:
+            if not 0 <= c.x + dc.x < len(maze) or not 0 <= c.y + dc.y < len(maze[c.x + dc.x]): continue
+            if maze[c.x + dc.x][c.y + dc.y] != WHITE: continue
+            if dfs_maze(Coordinate(c.x + dc.x, c.y + dc.y)): return True
+        c_popped = path.pop()
+        assert c_popped == c
+        return False
+    path = []
+    if maze[s.x][s.y] == WHITE:
+        dfs_maze(s)
+    return path
 
 
 def path_element_is_feasible(maze, prev, cur):
