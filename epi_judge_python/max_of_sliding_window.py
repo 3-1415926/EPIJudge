@@ -1,20 +1,29 @@
+import collections
+from dataclasses import dataclass
 import functools
 from typing import List
 
 from test_framework import generic_test
 from test_framework.test_utils import enable_executor_hook
 
-
+@dataclass
 class TrafficElement:
-    def __init__(self, time: int, volume: float) -> None:
-        self.time = time
-        self.volume = volume
+    time: int
+    volume: float
 
 
 def calculate_traffic_volumes(A: List[TrafficElement],
                               w: int) -> List[TrafficElement]:
-    # TODO - you fill in here.
-    return []
+    result = [None] * len(A)
+    max_idx_queue = collections.deque()
+    for i in range(len(A)):
+        while max_idx_queue and A[max_idx_queue[0]].time < A[i].time - w:
+            max_idx_queue.popleft()
+        while max_idx_queue and A[max_idx_queue[-1]].volume <= A[i].volume:
+            max_idx_queue.pop()
+        max_idx_queue.append(i)
+        result[i] = TrafficElement(A[i].time, A[max_idx_queue[0]].volume)
+    return result
 
 
 @enable_executor_hook

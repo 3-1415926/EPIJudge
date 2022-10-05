@@ -11,9 +11,18 @@ from test_framework.test_utils import enable_executor_hook
 # list nodes are used as the BST nodes left and right fields, respectively.
 # The length of the list is given.
 def build_bst_from_sorted_doubly_list(l: DoublyListNode,
-                                      n: int) -> Optional[DoublyListNode]:
-    # TODO - you fill in here.
-    return None
+                                      _: int) -> Optional[DoublyListNode]:
+    if l is None: return None
+    fast = slow = l
+    while fast and fast.next:
+        fast = fast.next.next
+        slow = slow.next
+    left_tail, right_head = slow.prev, slow.next
+    if left_tail: left_tail.next = slow.prev = None
+    if right_head: right_head.prev = slow.next = None
+    slow.prev = build_bst_from_sorted_doubly_list(l if l is not slow else None, None)
+    slow.next = build_bst_from_sorted_doubly_list(right_head, None)
+    return slow
 
 
 def compare_vector_and_tree(tree, it):

@@ -5,9 +5,8 @@ from test_framework import generic_test
 
 
 def inorder_traversal(tree: BinaryTreeNode) -> List[int]:
-    if tree is None: return []
     result, stack = [], []
-    while stack or tree:
+    while tree or stack:
         if tree:
             stack.append(tree)
             tree = tree.left

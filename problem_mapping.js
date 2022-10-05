@@ -2580,7 +2580,7 @@ problem_mapping = {
                 "total": 10034
             },
             "Python: gcd.py": {
-                "passed": 0,
+                "passed": 10034,
                 "total": 10034
             }
         },
@@ -2594,7 +2594,7 @@ problem_mapping = {
                 "total": 1001
             },
             "Python: first_missing_positive_entry.py": {
-                "passed": 0,
+                "passed": 1001,
                 "total": 1001
             }
         },
@@ -2622,7 +2622,7 @@ problem_mapping = {
                 "total": 35
             },
             "Python: max_product_all_but_one.py": {
-                "passed": 0,
+                "passed": 35,
                 "total": 35
             }
         },
@@ -2636,7 +2636,7 @@ problem_mapping = {
                 "total": 100
             },
             "Python: longest_increasing_subarray.py": {
-                "passed": 0,
+                "passed": 100,
                 "total": 100
             }
         },
@@ -2650,7 +2650,7 @@ problem_mapping = {
                 "total": 101
             },
             "Python: rotate_array.py": {
-                "passed": 0,
+                "passed": 101,
                 "total": 101
             }
         },
@@ -2664,7 +2664,7 @@ problem_mapping = {
                 "total": 201
             },
             "Python: rook_attack.py": {
-                "passed": 0,
+                "passed": 201,
                 "total": 201
             }
         },
@@ -2678,7 +2678,7 @@ problem_mapping = {
                 "total": 30
             },
             "Python: left_right_justify_text.py": {
-                "passed": 0,
+                "passed": 30,
                 "total": 30
             }
         },
@@ -2692,7 +2692,7 @@ problem_mapping = {
                 "total": 51
             },
             "Python: zip_list.py": {
-                "passed": 0,
+                "passed": 51,
                 "total": 51
             }
         },
@@ -2720,7 +2720,7 @@ problem_mapping = {
                 "total": 342
             },
             "Python: longest_substring_with_matching_parentheses.py": {
-                "passed": 0,
+                "passed": 342,
                 "total": 342
             }
         },
@@ -2734,7 +2734,7 @@ problem_mapping = {
                 "total": 149
             },
             "Python: max_of_sliding_window.py": {
-                "passed": 0,
+                "passed": 149,
                 "total": 149
             }
         },
@@ -2748,7 +2748,7 @@ problem_mapping = {
                 "total": 106
             },
             "Python: bonus.py": {
-                "passed": 0,
+                "passed": 106,
                 "total": 106
             }
         },
@@ -2762,7 +2762,7 @@ problem_mapping = {
                 "total": 206
             },
             "Python: search_unknown_length_array.py": {
-                "passed": 0,
+                "passed": 206,
                 "total": 206
             }
         },
@@ -2776,7 +2776,7 @@ problem_mapping = {
                 "total": 201
             },
             "Python: kth_largest_element_in_two_sorted_arrays.py": {
-                "passed": 0,
+                "passed": 201,
                 "total": 201
             }
         },
@@ -2790,7 +2790,7 @@ problem_mapping = {
                 "total": 503
             },
             "Python: kth_largest_element_in_long_array.py": {
-                "passed": 0,
+                "passed": 503,
                 "total": 503
             }
         },
@@ -2804,7 +2804,7 @@ problem_mapping = {
                 "total": 102
             },
             "Python: element_appearing_once.py": {
-                "passed": 0,
+                "passed": 102,
                 "total": 102
             }
         },
@@ -2818,7 +2818,7 @@ problem_mapping = {
                 "total": 282
             },
             "Python: line_through_most_points.py": {
-                "passed": 0,
+                "passed": 282,
                 "total": 282
             }
         },
@@ -2832,7 +2832,7 @@ problem_mapping = {
                 "total": 100
             },
             "Python: sorted_list_to_bst.py": {
-                "passed": 0,
+                "passed": 100,
                 "total": 100
             }
         },
@@ -2846,7 +2846,7 @@ problem_mapping = {
                 "total": 950
             },
             "Python: bst_to_sorted_list.py": {
-                "passed": 0,
+                "passed": 950,
                 "total": 950
             }
         },
@@ -2860,7 +2860,7 @@ problem_mapping = {
                 "total": 474
             },
             "Python: bst_merge.py": {
-                "passed": 0,
+                "passed": 474,
                 "total": 474
             }
         },
@@ -2874,7 +2874,7 @@ problem_mapping = {
                 "total": 1596
             },
             "Python: regular_expression.py": {
-                "passed": 0,
+                "passed": 1596,
                 "total": 1596
             }
         },

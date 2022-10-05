@@ -1,24 +1,22 @@
 from typing import List
 
-from collections import deque, namedtuple
 from binary_tree_node import BinaryTreeNode
 from test_framework import generic_test
 
 
-NodeDepth = namedtuple('NodeDepth', 'node, depth')
-
 
 def binary_tree_depth_order(tree: BinaryTreeNode) -> List[List[int]]:
     if tree is None: return []
-    results = []
-    queue = deque([NodeDepth(tree, 0)])
-    while len(queue) > 0:
-        node, depth = queue.popleft()
-        if len(results) <= depth:
-            results.append([])
-        results[depth].append(node.data)
-        if node.left: queue.append(NodeDepth(node.left, depth + 1))
-        if node.right: queue.append(NodeDepth(node.right, depth + 1))
+    results = [[tree]]
+    depth = 0
+    while depth < len(results):
+        for i in range(len(results[depth])):
+            if depth + 1 >= len(results) and (results[depth][i].left or results[depth][i].right):
+                results.append([])            
+            if results[depth][i].left: results[depth + 1].append(results[depth][i].left)
+            if results[depth][i].right: results[depth + 1].append(results[depth][i].right)
+            results[depth][i] = results[depth][i].data
+        depth += 1
     return results
 
 
