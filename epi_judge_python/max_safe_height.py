@@ -1,9 +1,11 @@
+import functools
 from test_framework import generic_test
 
-
+@functools.cache
 def get_height(cases: int, drops: int) -> int:
-    # TODO - you fill in here.
-    return 0
+    if cases <= 0 or drops <= 0: return 0
+    cases = min(cases, drops)
+    return get_height(cases - 1, drops - 1) + 1 + get_height(cases, drops - 1)
 
 
 if __name__ == '__main__':

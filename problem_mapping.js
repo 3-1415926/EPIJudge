@@ -2916,7 +2916,7 @@ problem_mapping = {
                 "total": 30
             },
             "Python: drawing_skyline.py": {
-                "passed": 0,
+                "passed": 30,
                 "total": 30
             }
         },
@@ -2930,7 +2930,7 @@ problem_mapping = {
                 "total": 200
             },
             "Python: defective_jugs.py": {
-                "passed": 0,
+                "passed": 200,
                 "total": 200
             }
         },
@@ -2944,7 +2944,7 @@ problem_mapping = {
                 "total": 501
             },
             "Python: maximum_subarray_in_circular_array.py": {
-                "passed": 0,
+                "passed": 501,
                 "total": 501
             }
         },
@@ -2958,7 +2958,7 @@ problem_mapping = {
                 "total": 3829
             },
             "Python: max_safe_height.py": {
-                "passed": 0,
+                "passed": 3829,
                 "total": 3829
             }
         },
@@ -2980,7 +2980,7 @@ problem_mapping = {
                 "total": 100
             },
             "Python: max_square_submatrix.py": {
-                "passed": 0,
+                "passed": 101,
                 "total": 101
             },
             "Python: max_submatrix.py": {
