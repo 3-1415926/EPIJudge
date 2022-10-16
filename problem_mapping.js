@@ -2984,7 +2984,7 @@ problem_mapping = {
                 "total": 101
             },
             "Python: max_submatrix.py": {
-                "passed": 0,
+                "passed": 100,
                 "total": 100
             }
         },
@@ -2998,7 +2998,7 @@ problem_mapping = {
                 "total": 11
             },
             "Python: huffman_coding.py": {
-                "passed": 0,
+                "passed": 11,
                 "total": 11
             }
         },
@@ -3012,7 +3012,7 @@ problem_mapping = {
                 "total": 1001
             },
             "Python: max_water_trappable.py": {
-                "passed": 0,
+                "passed": 1001,
                 "total": 1001
             }
         },
@@ -3026,7 +3026,7 @@ problem_mapping = {
                 "total": 265
             },
             "Python: search_frequent_items.py": {
-                "passed": 0,
+                "passed": 265,
                 "total": 265
             }
         },
@@ -3040,7 +3040,7 @@ problem_mapping = {
                 "total": 102
             },
             "Python: longest_subarray_with_sum_constraint.py": {
-                "passed": 0,
+                "passed": 102,
                 "total": 102
             }
         },

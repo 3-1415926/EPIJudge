@@ -1,16 +1,29 @@
 import collections
 import functools
+import heapq
 from typing import List
 
 from test_framework import generic_test
 from test_framework.test_utils import enable_executor_hook
 
 CharWithFrequency = collections.namedtuple('CharWithFrequency', ('c', 'freq'))
+Node = collections.namedtuple('Node', ('freq', 'char', 'zero', 'one'))
 
 
 def huffman_encoding(symbols: List[CharWithFrequency]) -> float:
-    # TODO - you fill in here.
-    return 0.0
+    def average_len(node, prefix_len):
+        return (node.freq * prefix_len if not node.zero and not node.one else
+                average_len(node.zero, prefix_len + 1) + average_len(node.one, prefix_len + 1))
+
+    if len(symbols) <= 1: return 0
+    for i in range(len(symbols)):
+        symbols[i] = Node(freq=symbols[i].freq, char=symbols[i].c, zero=None, one=None)
+    heapq.heapify(symbols)
+    while len(symbols) > 1:
+        zero = heapq.heappop(symbols)
+        one = heapq.heappop(symbols)
+        heapq.heappush(symbols, Node(freq=zero.freq + one.freq, char=zero.char + one.char, zero=zero, one=one))
+    return average_len(symbols[0], 0) / 100
 
 
 @enable_executor_hook
