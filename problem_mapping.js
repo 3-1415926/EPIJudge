@@ -2706,7 +2706,7 @@ problem_mapping = {
                 "total": 34
             },
             "Python: copy_posting_list.py": {
-                "passed": 0,
+                "passed": 32,
                 "total": 34
             }
         },
@@ -3054,7 +3054,7 @@ problem_mapping = {
                 "total": 50
             },
             "Python: road_network.py": {
-                "passed": 0,
+                "passed": 50,
                 "total": 50
             }
         },
@@ -3068,7 +3068,7 @@ problem_mapping = {
                 "total": 201
             },
             "Python: arbitrage.py": {
-                "passed": 0,
+                "passed": 201,
                 "total": 201
             }
         }
