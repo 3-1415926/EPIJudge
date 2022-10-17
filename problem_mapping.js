@@ -2699,15 +2699,15 @@ problem_mapping = {
         "24.10 Copy a postings list": {
             "C++: copy_posting_list.cc": {
                 "passed": 0,
-                "total": 34
+                "total": 32
             },
             "Java: CopyPostingList.java": {
                 "passed": 0,
-                "total": 34
+                "total": 32
             },
             "Python: copy_posting_list.py": {
                 "passed": 32,
-                "total": 34
+                "total": 32
             }
         },
         "24.11 Compute the longest substring with matching parens": {
