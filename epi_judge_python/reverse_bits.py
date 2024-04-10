@@ -1,9 +1,17 @@
 from test_framework import generic_test
 
 
+NUM_BITS = 64
+
 def reverse_bits(x: int) -> int:
-    # TODO - you fill in here.
-    return 0
+    assert x >= 0 and x < (1 << 63)
+    mask_width = NUM_BITS >> 1
+    mask = (1 << mask_width) - 1
+    while mask_width > 0:
+        x = ((x >> mask_width) & mask) | ((x & mask) << mask_width)
+        mask_width >>= 1
+        mask ^= mask << mask_width
+    return x
 
 
 if __name__ == '__main__':
