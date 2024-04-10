@@ -7,8 +7,11 @@ Rect = collections.namedtuple('Rect', ('x', 'y', 'width', 'height'))
 
 
 def intersect_rectangle(r1: Rect, r2: Rect) -> Rect:
-    # TODO - you fill in here.
-    return Rect(0, 0, 0, 0)
+    min_x, min_y = max(r1.x, r2.x), max(r1.y, r2.y)
+    max_x, max_y = min(r1.x+r1.width, r2.x+r2.width), min(r1.y+r1.height, r2.y+r2.height)
+    if max_x >= min_x and max_y >= min_y:
+        return Rect(min_x, min_y, max_x - min_x, max_y - min_y)
+    return Rect(0, 0, -1, -1)
 
 
 def intersect_rectangle_wrapper(r1, r2):
