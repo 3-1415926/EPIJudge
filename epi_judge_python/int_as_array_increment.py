@@ -2,10 +2,18 @@ from typing import List
 
 from test_framework import generic_test
 
+BASE = 10
 
 def plus_one(A: List[int]) -> List[int]:
-    # TODO - you fill in here.
-    return []
+    carry, i = 1, len(A) - 1
+    while carry and i >= 0:
+        digit = A[i] + carry
+        A[i] = digit % BASE
+        carry = digit // BASE
+        i -= 1
+    if carry and i < 0:
+        A.insert(0, carry)
+    return A
 
 
 if __name__ == '__main__':
