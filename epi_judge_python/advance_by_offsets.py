@@ -4,7 +4,11 @@ from test_framework import generic_test
 
 
 def can_reach_end(A: List[int]) -> bool:
-    # TODO - you fill in here.
+    last_reachable = 0
+    for i in range(len(A)):
+        if i > last_reachable:
+            return False
+        last_reachable = max(last_reachable, i + A[i])
     return True
 
 
