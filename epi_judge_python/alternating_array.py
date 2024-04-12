@@ -7,8 +7,10 @@ from test_framework.test_utils import enable_executor_hook
 
 
 def rearrange(A: List[int]) -> None:
-    # TODO - you fill in here.
-    return
+    for i in range(1, len(A)):
+        sign = -1 if i % 2 == 0 else 1
+        if sign * A[i - 1] > sign * A[i]:
+            A[i - 1], A[i] = A[i], A[i - 1]
 
 
 @enable_executor_hook
