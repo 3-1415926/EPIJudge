@@ -4,9 +4,17 @@ from test_framework import generic_test
 
 
 def matrix_in_spiral_order(square_matrix: List[List[int]]) -> List[int]:
-    # TODO - you fill in here.
-    return []
-
+    result = []
+    n = len(square_matrix)
+    for offset in range(n):
+        rng = range(offset, n - offset - 1)
+        for i in rng: result.append(square_matrix[offset][i])
+        for i in rng: result.append(square_matrix[i][~offset])
+        for i in rng: result.append(square_matrix[~offset][~i])
+        for i in rng: result.append(square_matrix[~i][offset])
+    if n % 2 != 0:
+        result.append(square_matrix[n // 2][n // 2])
+    return result
 
 if __name__ == '__main__':
     exit(
