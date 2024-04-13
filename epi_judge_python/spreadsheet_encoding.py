@@ -1,9 +1,12 @@
 from test_framework import generic_test
 
-
 def ss_decode_col_id(col: str) -> int:
-    # TODO - you fill in here.
-    return 0
+    result = 0
+    ORDA = ord('A')
+    BASE = ord('Z') - ORDA + 1
+    for c in col:
+        result = result * BASE + ord(c) - ORDA + 1
+    return result
 
 
 if __name__ == '__main__':

@@ -6,8 +6,24 @@ from test_framework.test_utils import enable_executor_hook
 
 
 def replace_and_remove(size: int, s: List[str]) -> int:
-    # TODO - you fill in here.
-    return 0
+    final_size = 0
+    j = 0
+    for i in range(size):
+        if s[i] != 'b':
+            final_size += 2 if s[i] == 'a' else 1
+            s[j] = s[i]
+            j += 1
+    size = j
+    j = final_size
+    for i in reversed(range(size)):
+        if s[i] == 'a':
+            j -= 2
+            s[j:j+2] = 'dd'
+        else:
+            j -= 1
+            s[j] = s[i]
+    del s[final_size:]
+    return final_size
 
 
 @enable_executor_hook
