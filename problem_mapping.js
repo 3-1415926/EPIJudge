@@ -676,15 +676,15 @@ problem_mapping = {
                 "total": 505
             },
             "Python: delete_from_list.py": {
-                "passed": 0,
+                "passed": 457,
                 "total": 457
             },
             "Python: insert_in_list.py": {
-                "passed": 0,
+                "passed": 504,
                 "total": 504
             },
             "Python: search_in_list.py": {
-                "passed": 0,
+                "passed": 505,
                 "total": 505
             }
         },
@@ -698,7 +698,7 @@ problem_mapping = {
                 "total": 501
             },
             "Python: sorted_lists_merge.py": {
-                "passed": 0,
+                "passed": 501,
                 "total": 501
             }
         },
