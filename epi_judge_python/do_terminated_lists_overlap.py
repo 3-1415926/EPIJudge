@@ -6,9 +6,29 @@ from test_framework.test_failure import TestFailure
 from test_framework.test_utils import enable_executor_hook
 
 
+def get_length(l: ListNode) -> int:
+    length = 0
+    while l is not None:
+        length += 1
+        l = l.next
+    return length
+
+
 def overlapping_no_cycle_lists(l0: ListNode, l1: ListNode) -> ListNode:
-    # TODO - you fill in here.
-    return ListNode()
+    l0_len = get_length(l0)
+    l1_len = get_length(l1)
+    min_len = min(l0_len, l1_len)
+    for _ in range(l0_len - min_len):
+        l0 = l0.next
+    for _ in range(l1_len - min_len):
+        l1 = l1.next
+    while l0 is not None and l1 is not None:
+        if l0 is l1:
+            return l0
+        l0 = l0.next
+        l1 = l1.next
+    assert l0 is None and l1 is None
+    return None
 
 
 @enable_executor_hook
