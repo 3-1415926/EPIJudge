@@ -3,21 +3,29 @@ from test_framework.test_failure import TestFailure
 
 
 class Stack:
+    def __init__(self):
+        self._data = []
+        self._max_indices = []
+    
     def empty(self) -> bool:
-        # TODO - you fill in here.
-        return True
+        return not self._max_indices
 
     def max(self) -> int:
-        # TODO - you fill in here.
-        return 0
+        if not self._max_indices:
+            raise IndexError()
+        return self._data[self._max_indices[-1]]
 
     def pop(self) -> int:
-        # TODO - you fill in here.
-        return 0
+        if not self._max_indices:
+            raise IndexError()
+        if self._max_indices[-1] >= len(self._data) - 1:
+            self._max_indices.pop()
+        return self._data.pop()
 
     def push(self, x: int) -> None:
-        # TODO - you fill in here.
-        return
+        if not self._max_indices or self._data[self._max_indices[-1]] < x:
+            self._max_indices.append(len(self._data))
+        self._data.append(x)
 
 
 def stack_tester(ops):

@@ -4,8 +4,16 @@ from test_framework import generic_test
 
 
 def examine_buildings_with_sunset(sequence: Iterator[int]) -> List[int]:
-    # TODO - you fill in here.
-    return []
+    heights = []
+    indices = []
+    for index, height in enumerate(sequence):
+        while heights and heights[-1] <= height:
+            heights.pop()
+            indices.pop()
+        heights.append(height)
+        indices.append(index)
+    indices.reverse()
+    return indices
 
 
 def examine_buildings_with_sunset_wrapper(sequence):

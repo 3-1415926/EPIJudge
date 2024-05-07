@@ -1,9 +1,20 @@
 from test_framework import generic_test
 
+PAIRS = {
+    "}": "{",
+    ")": "(",
+    "]": "[",
+}
 
 def is_well_formed(s: str) -> bool:
-    # TODO - you fill in here.
-    return True
+    stack = []
+    for c in s:
+        if opening := PAIRS.get(c):
+            if not stack or stack.pop() != opening:
+                return False
+        else:
+            stack.append(c)
+    return not stack
 
 
 if __name__ == '__main__':
