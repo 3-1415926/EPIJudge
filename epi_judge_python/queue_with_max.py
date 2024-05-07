@@ -1,19 +1,43 @@
+from collections import deque
+from dataclasses import dataclass
+
 from test_framework import generic_test
 from test_framework.test_failure import TestFailure
 
 
+@dataclass
+class ValueWithCount:
+    value: int
+    count: int
+    
+
 class QueueWithMax:
+    def __init__(self):
+        self._queue = deque()
+        self._maxes = deque()
+    
     def enqueue(self, x: int) -> None:
-        # TODO - you fill in here.
-        return
+        while self._maxes and self._maxes[-1].value < x:
+            self._maxes.pop()
+        if self._maxes and self._maxes[-1].value == x:
+            self._maxes[-1].count += 1
+        else:
+            self._maxes.append(ValueWithCount(x, 1))
+        self._queue.append(x)
 
     def dequeue(self) -> int:
-        # TODO - you fill in here.
-        return 0
+        if not self._queue:
+            raise IndexError()
+        if self._queue[0] == self._maxes[0].value:
+            self._maxes[0].count -= 1
+            if self._maxes[0].count == 0:
+                self._maxes.popleft()
+        return self._queue.popleft()
 
     def max(self) -> int:
-        # TODO - you fill in here.
-        return 0
+        if not self._queue:
+            raise IndexError()
+        return self._maxes[0].value
 
 
 def queue_tester(ops):
