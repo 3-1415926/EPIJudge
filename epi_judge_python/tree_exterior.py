@@ -1,5 +1,5 @@
 import functools
-from typing import List
+from typing import Iterable, List
 
 from binary_tree_node import BinaryTreeNode
 from test_framework import generic_test
@@ -7,9 +7,32 @@ from test_framework.test_failure import TestFailure
 from test_framework.test_utils import enable_executor_hook
 
 
+def leaves_and_boundaries(tree: BinaryTreeNode,
+                          left_boundary: bool = False,
+                          right_boundary: bool = False) -> Iterable[BinaryTreeNode]:
+    if not tree:
+        return
+    if not tree.left and not tree.right:
+        yield tree
+    else:
+        if left_boundary:
+            yield tree
+        for node in leaves_and_boundaries(tree.left,
+                                          left_boundary=left_boundary,
+                                          right_boundary=right_boundary and not tree.right):
+            yield node
+        for node in leaves_and_boundaries(tree.right,
+                                          left_boundary=left_boundary and not tree.left,
+                                          right_boundary=right_boundary):
+            yield node
+        if right_boundary:
+            yield tree
+
 def exterior_binary_tree(tree: BinaryTreeNode) -> List[BinaryTreeNode]:
-    # TODO - you fill in here.
-    return []
+    if not tree: return []
+    return [tree,
+            *leaves_and_boundaries(tree.left, left_boundary=True),
+            *leaves_and_boundaries(tree.right, right_boundary=True)]
 
 
 def create_output_list(L):
