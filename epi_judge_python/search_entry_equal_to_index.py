@@ -7,8 +7,14 @@ from test_framework.test_utils import enable_executor_hook
 
 
 def search_entry_equal_to_its_index(A: List[int]) -> int:
-    # TODO - you fill in here.
-    return 0
+    left, right = 0, len(A)
+    while left < right:
+        mid = left + (right - left) // 2
+        if A[mid] < mid:
+            left = mid + 1
+        else:
+            right = mid
+    return left if left < len(A) and A[left] == left else -1
 
 
 @enable_executor_hook
