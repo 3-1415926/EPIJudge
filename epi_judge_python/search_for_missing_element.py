@@ -1,4 +1,5 @@
 import collections
+import functools
 from typing import List
 
 from test_framework import generic_test
@@ -9,9 +10,17 @@ DuplicateAndMissing = collections.namedtuple('DuplicateAndMissing',
 
 
 def find_duplicate_missing(A: List[int]) -> DuplicateAndMissing:
-    # TODO - you fill in here.
-    return DuplicateAndMissing(0, 0)
-
+    miss_xor_dup = functools.reduce(int.__xor__, A) ^ functools.reduce(int.__xor__, range(len(A)))
+    bit = miss_xor_dup & ~(miss_xor_dup - 1)
+    a = 0
+    for item in A:
+        if item & bit != 0:
+            a ^= item
+    for item in range(len(A)):
+        if item & bit != 0:
+            a ^= item
+    b = a ^ miss_xor_dup
+    return DuplicateAndMissing(a, b) if a in A else DuplicateAndMissing(b, a)
 
 def res_printer(prop, value):
     def fmt(x):

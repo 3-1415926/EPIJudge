@@ -1420,7 +1420,7 @@ problem_mapping = {
                 "total": 100
             },
             "Python: absent_value_array.py": {
-                "passed": 0,
+                "passed": 100,
                 "total": 100
             }
         },
@@ -1434,7 +1434,7 @@ problem_mapping = {
                 "total": 50
             },
             "Python: search_for_missing_element.py": {
-                "passed": 0,
+                "passed": 50,
                 "total": 50
             }
         }
