@@ -1,18 +1,36 @@
-import collections
 import functools
-from typing import List
+from typing import List, NamedTuple
 
 from test_framework import generic_test
+from test_framework.test_failure import TestFailure
 from test_framework.test_utils import enable_executor_hook
 
-Subarray = collections.namedtuple('Subarray', ('start', 'end'))
+class Subarray(NamedTuple):
+    start: int
+    end: int
+
+    @property
+    def length(self):
+        return self.end - self.start if 0 <= self.start <= self.end else float('inf')
 
 
 def find_smallest_sequentially_covering_subset(paragraph: List[str],
                                                keywords: List[str]
                                                ) -> Subarray:
-    # TODO - you fill in here.
-    return Subarray(0, 0)
+    best_subarray = Subarray(-1, -1)
+    subsubarrays = [None] * len(keywords)
+    kw_indices = {k: i for i, k in enumerate(keywords)}
+    for i in range(len(paragraph)):
+        kw_idx = kw_indices.get(paragraph[i])
+        if kw_idx is None:
+            continue
+        if kw_idx == 0:
+            subsubarrays[kw_idx] = Subarray(i, i)
+        elif subsubarrays[kw_idx - 1] is not None:
+            subsubarrays[kw_idx] = Subarray(subsubarrays[kw_idx - 1].start, i)
+        if kw_idx == len(keywords) - 1 and subsubarrays[kw_idx] is not None and best_subarray.length > subsubarrays[kw_idx].length:
+            best_subarray = subsubarrays[kw_idx]
+    return best_subarray
 
 
 @enable_executor_hook
