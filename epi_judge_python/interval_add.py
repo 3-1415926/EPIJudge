@@ -9,10 +9,24 @@ from test_framework.test_utils import enable_executor_hook
 Interval = collections.namedtuple('Interval', ('left', 'right'))
 
 
+def do_intersect(a: Interval, b: Interval):
+    if a.left > b.left: a, b = b, a
+    return a.left <= b.left <= a.right or a.left <= b.right <= a.right
+
+def union(a: Interval, b: Interval):
+    return Interval(min(a.left, b.left), max(a.right, b.right))
+
+
 def add_interval(disjoint_intervals: List[Interval],
                  new_interval: Interval) -> List[Interval]:
-    # TODO - you fill in here.
-    return []
+    result = [new_interval]
+    for interval in disjoint_intervals:
+        if not do_intersect(interval, result[0]):
+            result.append(interval)
+        else:
+            result[0] = union(result[0], interval)
+    result.sort()
+    return result
 
 
 @enable_executor_hook

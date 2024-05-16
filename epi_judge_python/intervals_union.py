@@ -6,13 +6,32 @@ from test_framework import generic_test
 from test_framework.test_utils import enable_executor_hook
 
 Endpoint = collections.namedtuple('Endpoint', ('is_closed', 'val'))
-
+TypedEndpoint = collections.namedtuple('TypedEndpoint', ('endpoint', 'is_right'))
 Interval = collections.namedtuple('Interval', ('left', 'right'))
+
+def get_endpoint_key(e):
+    # LC -> RO -> LO -> RC = -2, -1, 1, 2
+    return e.endpoint.val, (-(e.is_right ^ e.endpoint.is_closed) * 2 + 1) * (e.endpoint.is_closed + 1)
 
 
 def union_of_intervals(intervals: List[Interval]) -> List[Interval]:
-    # TODO - you fill in here.
-    return []
+    endpoints = [e for i in intervals for e in (TypedEndpoint(i.left, False), TypedEndpoint(i.right, True))]
+    endpoints.sort(key=get_endpoint_key)
+    in_flight = 0
+    result = []
+    start = None
+    for e in endpoints:
+        if not e.is_right:
+            if in_flight == 0:
+                assert start is None
+                start = e
+            in_flight += 1
+        else:
+            in_flight -= 1
+            if in_flight == 0:
+                result.append(Interval(start.endpoint, e.endpoint))
+                start = None
+    return result
 
 
 @enable_executor_hook
