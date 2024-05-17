@@ -1774,7 +1774,7 @@ problem_mapping = {
                 "total": 1005
             },
             "Python: find_salary_threshold.py": {
-                "passed": 1,
+                "passed": 0,
                 "total": 1005
             }
         }

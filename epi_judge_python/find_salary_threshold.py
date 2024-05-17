@@ -5,23 +5,32 @@ from test_framework import generic_test
 
 def find_salary_cap(target_payroll: int, current_salaries: List[int]) -> float:
     N = len(current_salaries)
+    if N == 0:
+        return -1.
     current_salaries.sort()
-    cumulative_salaries = [0] * (N + 1)
-    for i in range(1, N + 1):
-        cumulative_salaries[i] = cumulative_salaries[i - 1] + current_salaries[i - 1]
+    cumulative_salaries = current_salaries.copy()
+    for i in range(1, N):
+        cumulative_salaries[i] += cumulative_salaries[i - 1]
     left, right = 0, N
     while left < right:
         mid = (left + right + 1) // 2
-        cap = ((target_payroll - cumulative_salaries[mid]) / (N - mid)) if mid < N else float('inf')
-        if cap >= current_salaries[mid - 1] if i > 0 else 0:
+        cap = (target_payroll - cumulative_salaries[mid - 1]) / (N - left) if left < N else float('inf')
+        print(left, mid, right, cap)
+        if cap >= current_salaries[mid - 1]:
             left = mid
         else:
             right = mid - 1
-    return (target_payroll - cumulative_salaries[left]) / (N - left) if left < N else -1.
+    print(left, right)         
+    if left == N:
+        return current_salaries[-1] if cumulative_salaries[-1] == target_payroll else -1.
+    if left == 0:
+        return target_payroll / N
+    return (target_payroll - cumulative_salaries[left - 1]) / (N - left)
+        
 
-#    20 30 40  90 100
+# 20 30 40 90 100
 #  0 20 50 90 180 280
-#  L     M          R
+#  L        M       R  
 #        L  M       R
 #           L   M   R
 
