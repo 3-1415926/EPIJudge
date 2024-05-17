@@ -9,8 +9,29 @@ from test_framework.test_utils import enable_executor_hook
 def pair_includes_ancestor_and_descendant_of_m(possible_anc_or_desc_0: BstNode,
                                                possible_anc_or_desc_1: BstNode,
                                                middle: BstNode) -> bool:
-    # TODO - you fill in here.
-    return True
+    a, b = possible_anc_or_desc_0, possible_anc_or_desc_1
+    if not a or not b or not middle:
+        return False
+    while a and a.data != middle.data or b and b.data != middle.data:
+        if a:
+            if middle.data < a.data:
+                a = a.left
+            elif middle.data > a.data:
+                a = a.right
+        if b:
+            if middle.data < b.data:
+                b = b.left
+            elif middle.data > b.data:
+                b = b.right
+    if not (bool(a) ^ bool(b)):
+        return False
+    descendant = possible_anc_or_desc_1 if a else possible_anc_or_desc_0
+    while middle and middle.data != descendant.data:
+        if descendant.data < middle.data:
+            middle = middle.left
+        elif descendant.data > middle.data:
+            middle = middle.right
+    return bool(middle)
 
 
 @enable_executor_hook
