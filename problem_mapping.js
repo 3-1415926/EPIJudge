@@ -2086,7 +2086,7 @@ problem_mapping = {
                 "total": 10
             },
             "Python: enumerate_trees.py": {
-                "passed": 0,
+                "passed": 10,
                 "total": 10
             }
         },
@@ -2100,7 +2100,7 @@ problem_mapping = {
                 "total": 400
             },
             "Python: sudoku_solve.py": {
-                "passed": 0,
+                "passed": 400,
                 "total": 400
             }
         },

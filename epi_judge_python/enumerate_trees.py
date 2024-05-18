@@ -8,8 +8,14 @@ from test_framework.test_utils import enable_executor_hook
 
 def generate_all_binary_trees(num_nodes: int
                               ) -> List[Optional[BinaryTreeNode]]:
-    # TODO - you fill in here.
-    return []
+    if num_nodes == 0:
+        return [None]
+    results = []
+    for split in range(num_nodes):
+        for left in generate_all_binary_trees(split):
+            for right in generate_all_binary_trees(num_nodes - split - 1):
+                results.append(BinaryTreeNode(left=left, right=right))
+    return results
 
 
 def serialize_structure(tree):
