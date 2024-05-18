@@ -2,8 +2,13 @@ from test_framework import generic_test
 
 
 def number_of_ways(n: int, m: int) -> int:
-    # TODO - you fill in here.
-    return 0
+    prev, cur = [0] * m, [1] * m
+    for _ in range(1, n):
+        prev, cur = cur, prev
+        cur[0] = 1
+        for c in range(1, m):
+            cur[c] = cur[c - 1] + prev[c]
+    return cur[-1]
 
 
 if __name__ == '__main__':
