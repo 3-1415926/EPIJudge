@@ -2268,7 +2268,7 @@ problem_mapping = {
                 "total": 162
             },
             "Python: picking_up_coins.py": {
-                "passed": 0,
+                "passed": 162,
                 "total": 162
             }
         },
@@ -2282,7 +2282,7 @@ problem_mapping = {
                 "total": 546
             },
             "Python: number_of_traversals_staircase.py": {
-                "passed": 0,
+                "passed": 546,
                 "total": 546
             }
         },
