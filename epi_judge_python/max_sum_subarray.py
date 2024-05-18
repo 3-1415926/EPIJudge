@@ -4,8 +4,12 @@ from test_framework import generic_test
 
 
 def find_maximum_subarray(A: List[int]) -> int:
-    # TODO - you fill in here.
-    return -1
+    max_overall = 0
+    max_trailing = 0
+    for a in A:
+        max_trailing = max(max_trailing + a, 0)
+        max_overall = max(max_overall, max_trailing)
+    return max_overall
 
 
 if __name__ == '__main__':
