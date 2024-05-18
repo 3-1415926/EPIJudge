@@ -2058,7 +2058,7 @@ problem_mapping = {
                 "total": 11
             },
             "Python: enumerate_balanced_parentheses.py": {
-                "passed": 0,
+                "passed": 11,
                 "total": 11
             }
         },
@@ -2072,7 +2072,7 @@ problem_mapping = {
                 "total": 522
             },
             "Python: enumerate_palindromic_decompositions.py": {
-                "passed": 0,
+                "passed": 522,
                 "total": 522
             }
         },
