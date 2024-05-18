@@ -64,8 +64,9 @@ class Solver:
                 if self.assignment[row][col]:
                     continue
                 taken_mask = self.rows[row] | self.cols[col] | self.sqrs[sqr_idx(row, col)]
-                if taken_mask != FULL_MASK:
-                    return row, col, taken_mask ^ FULL_MASK
+                if taken_mask == FULL_MASK:
+                    return -1, -1, 0
+                return row, col, taken_mask ^ FULL_MASK
         return -1, -1, 0
 
     def solve(self) -> bool:
