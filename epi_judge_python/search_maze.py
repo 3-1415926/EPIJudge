@@ -8,14 +8,29 @@ from test_framework.test_failure import TestFailure
 from test_framework.test_utils import enable_executor_hook
 
 WHITE, BLACK = range(2)
+DX, DY = [-1, 0, 1, 0], [0, 1, 0, -1]
 
 Coordinate = collections.namedtuple('Coordinate', ('x', 'y'))
 
 
 def search_maze(maze: List[List[int]], s: Coordinate,
                 e: Coordinate) -> List[Coordinate]:
-    # TODO - you fill in here.
-    return []
+    queue = collections.deque([s])
+    while queue:
+        c = queue.popleft()
+        if c == e:
+            path = [c]
+            while c != s:
+                c = maze[c.x][c.y]
+                path.append(c)
+            path.reverse()
+            return path
+        for dx, dy in zip(DX, DY):
+            nc = Coordinate(c.x + dx, c.y + dy)
+            if 0 <= nc.x < len(maze) and 0 <= nc.y < len(maze[nc.x]) and not maze[nc.x][nc.y]:
+                maze[nc.x][nc.y] = c
+                queue.append(nc)
+    return None
 
 
 def path_element_is_feasible(maze, prev, cur):
