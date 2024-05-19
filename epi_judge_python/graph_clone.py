@@ -1,5 +1,5 @@
 import collections
-from typing import List
+from typing import Dict, List, Optional
 
 from test_framework import generic_test
 from test_framework.test_failure import TestFailure
@@ -11,9 +11,14 @@ class GraphVertex:
         self.edges: List['GraphVertex'] = []
 
 
-def clone_graph(graph: GraphVertex) -> GraphVertex:
-    # TODO - you fill in here.
-    return GraphVertex(0)
+def clone_graph(graph: GraphVertex, cloned: Optional[Dict[GraphVertex, GraphVertex]] = None) -> GraphVertex:
+    if cloned is None: cloned = {}
+    clone = cloned.get(graph)
+    if clone is None:
+        clone = cloned[graph] = GraphVertex(label=graph.label)
+        for edge in graph.edges:
+            clone.edges.append(clone_graph(edge, cloned))
+    return clone
 
 
 def copy_labels(edges):

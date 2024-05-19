@@ -12,7 +12,17 @@ class GraphVertex:
 
 
 def is_any_placement_feasible(graph: List[GraphVertex]) -> bool:
-    # TODO - you fill in here.
+    def place(vertex: GraphVertex, d: int) -> bool:
+        if vertex.d >= 0:
+            return vertex.d == d
+        vertex.d = d
+        for edge in vertex.edges:
+            if not place(edge, 1 ^ d):
+                return False
+        return True
+    for vertex in graph:
+        if vertex.d < 0 and not place(vertex, 0):
+            return False
     return True
 
 

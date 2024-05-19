@@ -11,8 +11,22 @@ class GraphVertex:
 
 
 def is_deadlocked(graph: List[GraphVertex]) -> bool:
-    # TODO - you fill in here.
-    return True
+    processed = {}
+    def has_cycle(vertex: GraphVertex):
+        status = processed.get(vertex)
+        if status == True:
+            return False
+        if status == False:
+            return True
+        processed[vertex] = False
+        for neighbor in vertex.edges:
+            if has_cycle(neighbor):
+                return True
+        processed[vertex] = True
+    for vertex in graph:
+        if has_cycle(vertex):
+            return True
+    return False
 
 
 @enable_executor_hook
