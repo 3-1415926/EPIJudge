@@ -2580,7 +2580,7 @@ problem_mapping = {
                 "total": 10034
             },
             "Python: gcd.py": {
-                "passed": 0,
+                "passed": 10034,
                 "total": 10034
             }
         },
@@ -2594,7 +2594,7 @@ problem_mapping = {
                 "total": 1001
             },
             "Python: first_missing_positive_entry.py": {
-                "passed": 0,
+                "passed": 1001,
                 "total": 1001
             }
         },
