@@ -1,9 +1,19 @@
 from test_framework import generic_test
 
 
+COINS = [100, 50, 25, 10, 5, 1]
+
+
 def change_making(cents: int) -> int:
-    # TODO - you fill in here.
-    return 0
+    num_coins = 0
+    ci = 0
+    while cents:
+        if cents >= COINS[ci]:
+            cents -= COINS[ci]
+            num_coins += 1
+        else:
+            ci += 1
+    return num_coins
 
 
 if __name__ == '__main__':

@@ -9,8 +9,13 @@ Interval = collections.namedtuple('Interval', ('left', 'right'))
 
 
 def find_minimum_visits(intervals: List[Interval]) -> int:
-    # TODO - you fill in here.
-    return 0
+    last_visit, num_visits = float('-inf'), 0
+    intervals.sort(key=lambda i: (i.right, i.left))
+    for i in intervals:
+        if last_visit < i.left:
+            num_visits += 1
+            last_visit = i.right
+    return num_visits
 
 
 @enable_executor_hook
