@@ -2622,7 +2622,7 @@ problem_mapping = {
                 "total": 35
             },
             "Python: max_product_all_but_one.py": {
-                "passed": 0,
+                "passed": 35,
                 "total": 35
             }
         },
@@ -2636,7 +2636,7 @@ problem_mapping = {
                 "total": 100
             },
             "Python: longest_increasing_subarray.py": {
-                "passed": 0,
+                "passed": 100,
                 "total": 100
             }
         },
@@ -2650,7 +2650,7 @@ problem_mapping = {
                 "total": 101
             },
             "Python: rotate_array.py": {
-                "passed": 0,
+                "passed": 101,
                 "total": 101
             }
         },
@@ -2664,7 +2664,7 @@ problem_mapping = {
                 "total": 201
             },
             "Python: rook_attack.py": {
-                "passed": 0,
+                "passed": 201,
                 "total": 201
             }
         },
@@ -2678,7 +2678,7 @@ problem_mapping = {
                 "total": 30
             },
             "Python: left_right_justify_text.py": {
-                "passed": 0,
+                "passed": 30,
                 "total": 30
             }
         },
