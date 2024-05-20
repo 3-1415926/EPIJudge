@@ -2734,7 +2734,7 @@ problem_mapping = {
                 "total": 149
             },
             "Python: max_of_sliding_window.py": {
-                "passed": 0,
+                "passed": 149,
                 "total": 149
             }
         },
@@ -2748,7 +2748,7 @@ problem_mapping = {
                 "total": 106
             },
             "Python: bonus.py": {
-                "passed": 0,
+                "passed": 106,
                 "total": 106
             }
         },
@@ -2762,7 +2762,7 @@ problem_mapping = {
                 "total": 206
             },
             "Python: search_unknown_length_array.py": {
-                "passed": 0,
+                "passed": 206,
                 "total": 206
             }
         },

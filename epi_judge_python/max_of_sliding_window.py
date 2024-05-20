@@ -1,3 +1,4 @@
+import collections
 import functools
 from typing import List
 
@@ -13,8 +14,16 @@ class TrafficElement:
 
 def calculate_traffic_volumes(A: List[TrafficElement],
                               w: int) -> List[TrafficElement]:
-    # TODO - you fill in here.
-    return []
+    results = []
+    maxes = collections.deque()
+    for a in A:
+        while maxes and maxes[0].time < a.time - w:
+            maxes.popleft()
+        while maxes and maxes[-1].volume <= a.volume:
+            maxes.pop()
+        maxes.append(a)
+        results.append(TrafficElement(a.time, maxes[0].volume))
+    return results
 
 
 @enable_executor_hook
