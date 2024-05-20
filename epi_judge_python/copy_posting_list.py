@@ -8,8 +8,26 @@ from test_framework.test_utils import enable_executor_hook
 
 
 def copy_postings_list(L: PostingListNode) -> Optional[PostingListNode]:
-    # TODO - you fill in here.
-    return None
+    if not L:
+        return L
+    orig = L
+    while orig:
+        copy = PostingListNode(order=orig.order, next=orig.next)
+        orig.next = copy
+        orig = copy.next
+    orig = L
+    while orig:
+        copy = orig.next
+        copy.jump = orig.jump.next if orig.jump else None
+        orig = orig.next.next
+    copy_head = L.next
+    orig = L
+    while orig:
+        copy = orig.next
+        assert copy
+        orig.next, copy.next = orig.next.next, copy.next.next if copy.next else None
+        orig = orig.next
+    return copy_head
 
 
 def assert_lists_equal(orig, copy):

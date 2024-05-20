@@ -2706,7 +2706,7 @@ problem_mapping = {
                 "total": 34
             },
             "Python: copy_posting_list.py": {
-                "passed": 0,
+                "passed": 32,
                 "total": 34
             }
         },
@@ -2720,7 +2720,7 @@ problem_mapping = {
                 "total": 342
             },
             "Python: longest_substring_with_matching_parentheses.py": {
-                "passed": 0,
+                "passed": 342,
                 "total": 342
             }
         },
